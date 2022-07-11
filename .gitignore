@@ -1,0 +1,4 @@
+/.idea/.idea.IoC.Extensions/.idea/*
+**/.idea/*
+**/bin/**
+**/obj/
