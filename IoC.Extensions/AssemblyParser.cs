@@ -26,7 +26,11 @@ public static class AssemblyParser
     {
         if (!Directory.Exists(folder)) throw new DirectoryNotFoundException(folder);
 
-        var files = Directory.GetFiles(folder).Where(filter ?? (_ => true)).Where(d => d.EndsWith(".dll"));
+        var files = Directory.GetFiles(folder).Where(d => d.EndsWith(".dll"));
+        if (filter != null)
+        {
+            files = files.Where(s => filter(Path.GetFileName(s)));
+        }
         var res = new List<ImportInfo>();
         foreach (var file in files)
         {
